@@ -27,12 +27,12 @@ async function scrapeUrl(url: string): Promise<SEOMetadata> {
   const h5: string[] = [];
   const h6: string[] = [];
 
-  $('h1').each((_, el) => h1.push($(el).text().trim()));
-  $('h2').each((_, el) => h2.push($(el).text().trim()));
-  $('h3').each((_, el) => h3.push($(el).text().trim()));
-  $('h4').each((_, el) => h4.push($(el).text().trim()));
-  $('h5').each((_, el) => h5.push($(el).text().trim()));
-  $('h6').each((_, el) => h6.push($(el).text().trim()));
+  $('h1').each((_, el) => { h1.push($(el).text().trim()); return undefined; });
+  $('h2').each((_, el) => { h2.push($(el).text().trim()); return undefined; });
+  $('h3').each((_, el) => { h3.push($(el).text().trim()); return undefined; });
+  $('h4').each((_, el) => { h4.push($(el).text().trim()); return undefined; });
+  $('h5').each((_, el) => { h5.push($(el).text().trim()); return undefined; });
+  $('h6').each((_, el) => { h6.push($(el).text().trim()); return undefined; });
 
   let imagesWithoutAlt = 0;
   let totalImages = 0;
