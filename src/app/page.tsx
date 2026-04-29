@@ -3,6 +3,11 @@
 import { useState } from 'react';
 import { UrlInputForm } from '@/components/url-input-form';
 import { ComparisonTable } from '@/components/comparison-table';
+import { PDFExportModal } from '@/components/pdf-export-modal';
+import { HeadingGapAnalysis } from '@/components/heading-gap-analysis';
+import { ContentStrategy } from '@/components/content-strategy';
+import { VisualEquityTracker } from '@/components/visual-equity-tracker';
+import { HeadingDensityAudit } from '@/components/heading-density-audit';
 import { Card, CardContent } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle, BarChart3 } from 'lucide-react';
@@ -64,14 +69,47 @@ export default function Home() {
         )}
 
         {results && (
-          <Card className="max-w-7xl mx-auto">
-            <CardContent className="pt-6">
-              <ComparisonTable
-                target={results.target}
-                competitors={results.competitors}
-              />
-            </CardContent>
-          </Card>
+          <div className="space-y-6">
+            {/* Comparison Table with PDF Export */}
+            <Card className="max-w-7xl mx-auto">
+              <CardContent className="pt-6">
+                <div className="flex justify-end mb-4">
+                  <PDFExportModal
+                    target={results.target}
+                    competitors={results.competitors}
+                  />
+                </div>
+                <ComparisonTable
+                  target={results.target}
+                  competitors={results.competitors}
+                />
+              </CardContent>
+            </Card>
+
+            {/* Heading Gap Analysis */}
+            <HeadingGapAnalysis
+              target={results.target}
+              competitors={results.competitors}
+            />
+
+            {/* Suggested Content Strategy */}
+            <ContentStrategy
+              target={results.target}
+              competitors={results.competitors}
+            />
+
+            {/* Visual Equity Tracker */}
+            <VisualEquityTracker
+              target={results.target}
+              competitors={results.competitors}
+            />
+
+            {/* Heading Density Audit */}
+            <HeadingDensityAudit
+              target={results.target}
+              competitors={results.competitors}
+            />
+          </div>
         )}
       </main>
     </div>
